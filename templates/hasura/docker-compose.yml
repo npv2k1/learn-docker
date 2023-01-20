@@ -1,0 +1,60 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:13
+    restart: on-failure
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD
+        - pg_isready
+        - -q
+        - -d
+        - ${POSTGRES_DB}
+        - -U
+        - ${POSTGRES_USER}
+      timeout: 45s
+      interval: 10s
+      retries: 10
+  metadata-db:
+    image: postgres:13
+    restart: on-failure
+    volumes:
+      - ./data/metadata-db:/var/lib/postgresql/data
+    env_file:
+      - .env
+    environment:
+      POSTGRES_PASSWORD: ${METADATA_POSTGRES_PASSWORD}
+    command: -p 5433
+    healthcheck:
+      test:
+        - CMD
+        - pg_isready
+        - -q
+        - -d
+        - ${POSTGRES_DB}
+        - -U
+        - ${POSTGRES_USER}
+      timeout: 45s
+      interval: 10s
+      retries: 10
+  hasura:
+    image: hasura/graphql-engine:latest
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - metadata-db
+
+    env_file:
+      - .env
+
+# volumes:
+#   postgresttcs:
+#   hasuradbttcs:
