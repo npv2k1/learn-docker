@@ -1,0 +1,53 @@
+services:
+  phpmyadmin:
+    image: phpmyadmin
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      - PMA_ARBITRARY=1
+  db:
+    image: mariadb:10.6.4-focal
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - dbdata:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=somewordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=YEfk9KvRFCC6WxuR
+    expose:
+      - 3306
+    ports:
+      - 3306:80
+  wordpress:
+    image: wordpress:latest
+    depends_on:
+      - db
+    ports:
+      - 8080:80
+    restart: always
+    volumes:
+      - ./public_html:/var/www/html
+      - ./upload.ini:/usr/local/etc/php/conf.d/uploads.ini
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=YEfk9KvRFCC6WxuR
+      - WORDPRESS_DB_NAME=wordpress
+      - WP_MEMORY_LIMIT=1G
+      - WP_REDIS_HOST=redis
+  redis:
+    image: redis/redis-stack:latest
+    restart: always
+    volumes:
+      - redis_data:/data
+    ports:
+      - 6379:6379
+      - 8001:8001
+volumes:
+  dbdata:
+  redis_data:
