@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  mongo-1:
+    image: mongo:4.4.2
+    container_name: mongo-1
+    ports:
+      - 27030:27017
+    networks:
+      - mongo
+    command: /usr/bin/mongod --bind_ip_all --replSet rs0 --journal --dbpath /data/db --enableMajorityReadConcern false
+    volumes:
+      - ./mongo-1/db:/data/db
+
+  mongo-2:
+    image: mongo:4.4.2
+    container_name: mongo-2
+    ports:
+      - 27031:27017
+    networks:
+      - mongo
+    command: /usr/bin/mongod --bind_ip_all --replSet rs0 --journal --dbpath /data/db --enableMajorityReadConcern false
+    volumes:
+      - ./mongo-2/db:/data/db
+
+  mongo-3:
+    image: mongo:4.4.2
+    container_name: mongo-3
+    ports:
+      - 27032:27017
+    networks:
+      - mongo
+
+    command: /usr/bin/mongod --bind_ip_all --replSet rs0 --journal --dbpath /data/db --enableMajorityReadConcern false
+    volumes:
+      - ./mongo-3/db:/data/db
+
+volumes:
+  mongo-1:
+  mongo-2:
+  mongo-3:
+
+
+networks:
+  mongo:
