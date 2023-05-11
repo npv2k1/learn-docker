@@ -1,0 +1,3 @@
+# MQTT Server
+
+MQTT (Message Queuing Telemetry Transport) là một giao thức truyền thông nhẹ được sử dụng để giao tiếp giữa các thiết bị IoT (Internet of Things). MQTT được phát triển bởi IBM vào những năm 1990 và được sử dụng rộng rãi trong các ứng dụng IoT. MQTT cho phép các thiết bị gửi và nhận thông tin từ nhau thông qua một trung tâm trung gian (broker), giúp tiết kiệm băng thông và năng lượng. MQTT sử dụng mô hình publish-subscribe, trong đó các thiết bị đăng ký để nhận thông tin từ một chủ đề (topic) cụ thể và các thiết bị khác phát thông tin đến chủ đề đó. MQTT là một giao thức đáng tin cậy, đơn giản và tiết kiệm năng lượng, thích hợp cho các ứng dụng IoT yêu cầu độ tin cậy và tiết kiệm năng lượng.
