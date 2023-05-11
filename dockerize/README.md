@@ -1,0 +1,3 @@
+# Dockerize là gì
+
+**Dockerize** là quá trình đóng gói ứng dụng và các thành phần liên quan của nó vào các **container Docker**. Việc sử dụng Dockerize giúp cho việc triển khai và vận hành ứng dụng trở nên dễ dàng hơn. Bằng cách đóng gói ứng dụng vào trong các container, người dùng có thể đảm bảo rằng ứng dụng có thể chạy trên bất kỳ hệ thống nào có sẵn Docker mà không cần phải lo lắng về các yêu cầu về môi trường, cài đặt và cấu hình. Dockerize cũng giúp cho việc quản lý các ứng dụng và các phiên bản của chúng trở nên dễ dàng hơn bằng cách sử dụng các công cụ quản lý container như Docker Compose.
