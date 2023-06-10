@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./openssl:/etc/nginx/certs # Mount the certificates directory
+    ports:
+      - 80:80
+      - 443:443
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
