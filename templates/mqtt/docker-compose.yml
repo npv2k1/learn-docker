@@ -9,6 +9,7 @@ services:
       - "9001:9001"
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+      # - ./password.txt:/mosquitto/config/password.txt
       - mosquitto_data:/mosquitto/data
       - mosquitto_log:/mosquitto/log
     #restart: always
