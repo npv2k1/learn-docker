@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: hellos-docker
+    container_name: hellos-docker
+    command: npm run dev
+    volumes:
+      - ./:/usr/src/app
+    environment:
+      - NODE_ENV=development

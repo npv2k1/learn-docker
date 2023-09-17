@@ -1,0 +1,13 @@
+version: "3.8"
+services: 
+    web: 
+        build: .
+        image: node-dk
+        ports: 
+            - 3000:3000
+        working_dir: /usr/app/frontend
+
+        volumes:
+            - "./:/usr/app/frontend"
+        command: ["yarn","dev"]
+        
