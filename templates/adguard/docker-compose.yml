@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  ad:
+    image: adguard/adguardhome
+    volumes:
+      - ./workdir:/opt/adguardhome/work
+      - ./confdir:/opt/adguardhome/conf
+    ports:
+      - "5555:53/tcp"
+      - "5555:53/udp"
+      - "6767:67/udp"
+      - "6868:68/udp"
+      - "8080:80/udp"
+      - "4433:443/udp"
+      - "3000:3000/tcp"
+      - "8533:853/tcp"
+      - "7844:784/udp"
+      - "8533:853/udp"
+      - "8853:8853/udp"
+      - "5443:5443/tcp"
+      - "5443:5443/udp"
+networks:
+  ad:
