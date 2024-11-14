@@ -1,0 +1,1 @@
+docker exec mysql /usr/bin/mysqldump -u root --password=123456 mydb > ./export-mysql.sql

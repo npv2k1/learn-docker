@@ -1,7 +1,8 @@
-version: '3.8'
 services:
-  topik-mysql:
-    image: mysql:8.0
+  mysql:
+    image: mysql:8.4.0
+    container_name: mysql
+    restart: always
     environment:
       - MYSQL_DATABASE=mydb
       - MYSQL_ROOT_PASSWORD=123456
@@ -9,3 +10,9 @@ services:
       - MYSQL_PASSWORD=123456
     ports:
       - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./seed:/docker-entrypoint-initdb.d # Import SQL file
+
+volumes:
+  mysql-data:
