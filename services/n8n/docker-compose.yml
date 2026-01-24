@@ -11,6 +11,7 @@ services:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - N8N_PORT=5678
       - N8N_METRICS=true
+      - N8N_SECURE_COOKIE=false # only for development
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
