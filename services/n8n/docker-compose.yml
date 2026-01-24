@@ -1,11 +1,18 @@
-version: "3.8"
-
 services:
   n8n:
     image: docker.n8n.io/n8nio/n8n
     ports:
       - 5678:5678
     volumes:
-      - /home/ubuntu/.n8n:/home/node/.n8n
+      - n8n_data:/home/node/.n8n
     environment:
       - NODE_ENV=production
+      - NODE_FUNCTION_ALLOW_EXTERNAL=moment,lodash
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_PORT=5678
+      - N8N_METRICS=true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  n8n_data:
